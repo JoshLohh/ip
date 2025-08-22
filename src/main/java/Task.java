@@ -1,10 +1,12 @@
 public class Task {
-    private boolean isDone;
-    private String description;
+    protected boolean isDone;
+    protected String description;
+    protected String type;
 
     public Task(String desc) {
         this.description = desc;
         this.isDone = false;
+        this.type = "T";
     }
 
     public void markDone() {
@@ -21,6 +23,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + (isDone ? "X" : " ") + "] " + this.description;
+        return "[" + this.type + "]" +
+                "[" + (isDone ? "X" : " ") + "] " +
+                this.description;
     }
 }
