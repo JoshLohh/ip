@@ -10,7 +10,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[" + this.type + "]" +
-                "[" + (isDone ? "X" : " ") + "]" +
+                "[" + (isDone ? "X" : " ") + "] " +
                 this.description + " (by: " + this.deadline + ")";
     }
 }

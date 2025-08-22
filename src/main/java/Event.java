@@ -13,7 +13,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[" + this.type + "]" +
-                "[" + (isDone ? "X" : " ") + "]" +
+                "[" + (isDone ? "X" : " ") + "] " +
                 this.description +
                 " (from: " + this.from +
                 " to: " + this.to + ")";
