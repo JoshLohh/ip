@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Olaf {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TaskList tasklist = new TaskList();
+        TaskList taskList = new TaskList();
 
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Heyyos! I'm Olaf! Your personal assistant:)");
@@ -14,11 +14,17 @@ public class Olaf {
         while(true) {
             String input = sc.nextLine();
             if (input.equals("list")){
-                tasklist.listTasks();
+                taskList.listTasks();
             } else if (input.equals("bye")){
                 break;
+            } else if (input.startsWith("mark ")) {
+                int taskNum = Integer.parseInt(input.substring(5).trim());
+                taskList.markTask(taskNum);
+            } else if (input.startsWith("unmark ")) {
+                int taskNum = Integer.parseInt(input.substring(7).trim());
+                taskList.unmarkTask(taskNum);
             } else {
-                tasklist.addTask(input);
+                taskList.addTask(input);
             }
         }
 
