@@ -4,14 +4,14 @@ public class TaskList {
 
     //add tasks
 
-    private void addTask(String task){
+    public void addTask(String task){
         tasks[count++] = task;
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  added: " + task);
         System.out.println("  -----------------------------------------------------------------");
     }
 
-    private void listTasks() {
+    public void listTasks() {
         System.out.println("  -----------------------------------------------------------------");
         for (int i = 0; i < count; i++){
             System.out.println("  " + (i + 1) + ". " + tasks[i]);
