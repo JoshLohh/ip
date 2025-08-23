@@ -1,15 +1,19 @@
+import java.util.ArrayList;
+
 public class TaskList {
-    private Task[] tasks = new Task[100];
+    //private Task[] tasks = new Task[100];
+    private ArrayList<Task> tasks = new ArrayList<>();
     private int count = 0;
 
     //add tasks
 
     public void addTask(Task task) {
-        tasks[count++] = task;
+        tasks.add(task);
+        count++;
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Understood. I have added this task for you:" );
         System.out.println("    " + task);
-        System.out.println("  You have a total of " + this.count + " tasks in your list.");
+        System.out.println("  You currently have a total of " + this.count + " tasks in your list.");
         System.out.println("  -----------------------------------------------------------------");
     }
 
@@ -17,13 +21,13 @@ public class TaskList {
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Here are the tasks you have in your list:");
         for (int i = 0; i < count; i++){
-            System.out.println("  " + (i + 1) + ". " + tasks[i]);
+            System.out.println("  " + (i + 1) + ". " + tasks.get(i));
         }
         System.out.println("  -----------------------------------------------------------------");
     }
 
     public void markTask(int pos) {
-        Task currTask = this.tasks[pos-1];
+        Task currTask = tasks.get(pos-1);
         currTask.markDone();
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Nicely done! I have marked this task as done:");
@@ -32,7 +36,7 @@ public class TaskList {
     }
 
     public void unmarkTask(int pos) {
-        Task currTask = this.tasks[pos-1];
+        Task currTask = tasks.get(pos-1);
         currTask.markUndone();
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Alright, I have marked this task as undone:");
@@ -42,5 +46,15 @@ public class TaskList {
 
     public int getCount() {
         return this.count;
+    }
+
+    public void deleteTask(int pos) {
+        Task deletedTask = tasks.remove(pos - 1);
+        this.count--;
+        System.out.println("  -----------------------------------------------------------------");
+        System.out.println("  Noted. I have removed this task for you:");
+        System.out.println("    " + deletedTask);
+        System.out.println("  You currently have a total of " + this.count + " tasks in your list.");
+        System.out.println("  -----------------------------------------------------------------");
     }
 }
