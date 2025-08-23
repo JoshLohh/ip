@@ -59,7 +59,8 @@ public class Olaf {
                     }
                     taskList.addTask(new ToDo(desc));
                 } else if (input.startsWith("deadline")) {
-                    String details = input.substring(9);
+                    String details = input.length() > 8 ?
+                            input.substring(9) : "";
                     //Split details into array of 2, desc and deadline
                     String[] parts = details.split(" /by ");
                     String desc = parts[0].trim();
