@@ -15,4 +15,7 @@ deadline
 help
 mark 7
 mark -1
+delete 3
+list
+delete 7
 bye

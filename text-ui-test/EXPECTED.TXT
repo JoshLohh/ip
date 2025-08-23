@@ -5,27 +5,27 @@
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [T][ ] read book
-  You have a total of 1 tasks in your list.
+  You currently have a total of 1 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [D][ ] return book (by: June 6th)
-  You have a total of 2 tasks in your list.
+  You currently have a total of 2 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-  You have a total of 3 tasks in your list.
+  You currently have a total of 3 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [T][ ] join sports club
-  You have a total of 4 tasks in your list.
+  You currently have a total of 4 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [T][ ] borrow book
-  You have a total of 5 tasks in your list.
+  You currently have a total of 5 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Here are the tasks you have in your list:
@@ -38,12 +38,12 @@
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [D][ ] return book (by: Sunday)
-  You have a total of 6 tasks in your list.
+  You currently have a total of 6 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
     [E][ ] project meeting (from: Mon 2pm to: 4pm)
-  You have a total of 7 tasks in your list.
+  You currently have a total of 7 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Nicely done! I have marked this task as done:
@@ -75,6 +75,23 @@
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   OOPS!!! Task number for 'mark' must be between 1 and 7.
+  -----------------------------------------------------------------
+  -----------------------------------------------------------------
+  Noted. I have removed this task for you:
+    [E][X] project meeting (from: Aug 6th 2pm to: 4pm)
+  You currently have a total of 6 tasks in your list.
+  -----------------------------------------------------------------
+  -----------------------------------------------------------------
+  Here are the tasks you have in your list:
+  1. [T][ ] read book
+  2. [D][ ] return book (by: June 6th)
+  3. [T][ ] join sports club
+  4. [T][ ] borrow book
+  5. [D][ ] return book (by: Sunday)
+  6. [E][X] project meeting (from: Mon 2pm to: 4pm)
+  -----------------------------------------------------------------
+  -----------------------------------------------------------------
+  OOPS!!! Task number for delete must be between 1 and 6.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Goodbye! Hope to see you again soon!
