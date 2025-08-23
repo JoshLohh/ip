@@ -39,4 +39,8 @@ public class TaskList {
         System.out.println("  " + currTask);
         System.out.println("  -----------------------------------------------------------------");
     }
+
+    public int getCount() {
+        return this.count;
+    }
 }
