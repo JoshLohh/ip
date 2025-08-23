@@ -1,12 +1,12 @@
 public class Task {
     protected boolean isDone;
     protected String description;
-    protected String type;
+    protected TaskType type;
 
-    public Task(String desc) {
+    public Task(String desc, TaskType type) {
         this.description = desc;
         this.isDone = false;
-        this.type = "T";
+        this.type = type;
     }
 
     public void markDone() {
@@ -23,7 +23,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + this.type + "]" +
+        String typeStr = switch (type) {
+            case TODO -> "T";
+            case DEADLINE -> "D";
+            case EVENT -> "E";
+        };
+        return "[" + typeStr + "]" +
                 "[" + (isDone ? "X" : " ") + "] " +
                 this.description;
     }
