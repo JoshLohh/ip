@@ -92,6 +92,23 @@ public class Olaf {
                         throw new OlafException("OOPS!!! Event description, start or end time cannot be empty.");
                     }
                     taskList.addTask(new Event(desc, from, to));
+                } else if (input.startsWith("delete")) {
+                    if (taskList.getCount() == 0) {
+                        throw new OlafException("OOPS!!! There are no tasks to delete.");
+                    }
+                    String taskStrPos = input.length() > 6 ?
+                            input.substring(6).trim() : "";
+                    int taskNum;
+                    try {
+                        taskNum = Integer.parseInt(taskStrPos);
+                    } catch (NumberFormatException e) {
+                        throw new OlafException("OOPS!!! 'delete' requires a valid integer");
+                    }
+                    if (taskNum < 1 || taskNum > taskList.getCount()) {
+                        throw new OlafException("OOPS!!! Task number for delete must be between 1 and " +
+                                taskList.getCount() + ".");
+                    }
+                    taskList.deleteTask(taskNum);
                 } else {
                     throw new OlafException("OOPS!!! I'm sorry, but I don't know that command :(.");
                 }
