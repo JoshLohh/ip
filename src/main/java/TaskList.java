@@ -7,7 +7,7 @@ public class TaskList {
     public void addTask(Task task) {
         tasks[count++] = task;
         System.out.println("  -----------------------------------------------------------------");
-        System.out.println("  Understood. I have added this task for you: " );
+        System.out.println("  Understood. I have added this task for you:" );
         System.out.println("    " + task);
         System.out.println("  You have a total of " + this.count + " tasks in your list.");
         System.out.println("  -----------------------------------------------------------------");
