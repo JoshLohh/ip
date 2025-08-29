@@ -1,15 +1,22 @@
 import java.util.ArrayList;
 
 public class TaskList {
-    //private Task[] tasks = new Task[100];
+    private Storage storage;
     private ArrayList<Task> tasks = new ArrayList<>();
     private int count = 0;
 
-    //add tasks
 
+    //Constructor
+    public TaskList(ArrayList<Task> tasks, Storage storage) {
+        this.tasks = tasks;
+        this.storage = storage;
+        this.count = tasks.size();
+    }
+    //add tasks
     public void addTask(Task task) {
         tasks.add(task);
         count++;
+        storage.save(tasks);
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Understood. I have added this task for you:" );
         System.out.println("    " + task);
@@ -29,6 +36,7 @@ public class TaskList {
     public void markTask(int pos) {
         Task currTask = tasks.get(pos-1);
         currTask.markDone();
+        storage.save(tasks);
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Nicely done! I have marked this task as done:");
         System.out.println("  " + currTask);
@@ -38,6 +46,7 @@ public class TaskList {
     public void unmarkTask(int pos) {
         Task currTask = tasks.get(pos-1);
         currTask.markUndone();
+        storage.save(tasks);
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Alright, I have marked this task as undone:");
         System.out.println("  " + currTask);
@@ -51,6 +60,7 @@ public class TaskList {
     public void deleteTask(int pos) {
         Task deletedTask = tasks.remove(pos - 1);
         this.count--;
+        storage.save(tasks);
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Noted. I have removed this task for you:");
         System.out.println("    " + deletedTask);

@@ -17,4 +17,12 @@ public class Event extends Task {
                 " (from: " + this.from +
                 " to: " + this.to + ")";
     }
+
+    public String getFrom() {
+        return this.from;
+    }
+
+    public String getTo() {
+        return this.to;
+    }
 }

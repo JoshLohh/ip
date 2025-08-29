@@ -1,9 +1,12 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Olaf {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TaskList taskList = new TaskList();
+        Storage storage = new Storage("./data/olaf.txt");
+        ArrayList<Task> loadedTasks = storage.load();
+        TaskList taskList = new TaskList(loadedTasks, storage);
 
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Heyyos! I'm Olaf! Your personal assistant:)");

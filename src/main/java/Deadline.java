@@ -1,6 +1,7 @@
 public class Deadline extends Task {
 
     private String deadline;
+
     public Deadline(String description, String deadline) {
         super(description, TaskType.DEADLINE);
         this.deadline = deadline;
@@ -11,5 +12,9 @@ public class Deadline extends Task {
         return "[" + this.type + "]" +
                 "[" + (isDone ? "X" : " ") + "] " +
                 this.description + " (by: " + this.deadline + ")";
+    }
+
+    public String getDeadline() {
+        return this.deadline;
     }
 }

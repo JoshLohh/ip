@@ -32,4 +32,8 @@ public class Task {
                 "[" + (isDone ? "X" : " ") + "] " +
                 this.description;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }
