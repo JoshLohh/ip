@@ -105,7 +105,7 @@ public class Parser {
                 taskList.addTask(new Event(desc, from, to));
             } catch (DateTimeParseException e) {
                 throw new OlafException("OOPS!!! Please enter both 'from' and 'to' in this format: d/M/yyyy HHmm\n" +
-                        "(eg. /from 2/12/2025 1800 /to 2/12/2025 2000)");
+                        "  (eg. /from 2/12/2025 1800 /to 2/12/2025 2000)");
             }
             return false;
         } else if (input.startsWith("delete")) {
