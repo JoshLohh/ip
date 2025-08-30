@@ -104,7 +104,7 @@ public class Parser {
                 LocalDateTime to = LocalDateTime.parse(toStr, dtf);
                 taskList.addTask(new Event(desc, from, to));
             } catch (DateTimeParseException e) {
-                throw new OlafException("OOPS!!! Please enter both 'from' and 'to' in this format: d/M/yyyy HHmm" +
+                throw new OlafException("OOPS!!! Please enter both 'from' and 'to' in this format: d/M/yyyy HHmm\n" +
                         "(eg. /from 2/12/2025 1800 /to 2/12/2025 2000)");
             }
             return false;
