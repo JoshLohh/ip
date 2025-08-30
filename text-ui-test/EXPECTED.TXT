@@ -9,7 +9,7 @@
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
-    [D][ ] return book (by: June 6th)
+    [D][ ] return book (by: 6 Jun 2025 6:00pm)
   You currently have a total of 2 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
@@ -30,14 +30,14 @@
   -----------------------------------------------------------------
   Here are the tasks you have in your list:
   1. [T][ ] read book
-  2. [D][ ] return book (by: June 6th)
+  2. [D][ ] return book (by: 6 Jun 2025 6:00pm)
   3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
   4. [T][ ] join sports club
   5. [T][ ] borrow book
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Understood. I have added this task for you:
-    [D][ ] return book (by: Sunday)
+    [D][ ] return book (by: 30 Oct 2025 3:00pm)
   You currently have a total of 6 tasks in your list.
   -----------------------------------------------------------------
   -----------------------------------------------------------------
@@ -47,7 +47,7 @@
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Nicely done! I have marked this task as done:
-  [D][X] return book (by: June 6th)
+  [D][X] return book (by: 6 Jun 2025 6:00pm)
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Nicely done! I have marked this task as done:
@@ -55,7 +55,7 @@
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   Alright, I have marked this task as undone:
-  [D][ ] return book (by: June 6th)
+  [D][ ] return book (by: 6 Jun 2025 6:00pm)
   -----------------------------------------------------------------
   -----------------------------------------------------------------
   OOPS!!! The description of a todo task cannot be empty.
@@ -84,10 +84,10 @@
   -----------------------------------------------------------------
   Here are the tasks you have in your list:
   1. [T][ ] read book
-  2. [D][ ] return book (by: June 6th)
+  2. [D][ ] return book (by: 6 Jun 2025 6:00pm)
   3. [T][ ] join sports club
   4. [T][ ] borrow book
-  5. [D][ ] return book (by: Sunday)
+  5. [D][ ] return book (by: 30 Oct 2025 3:00pm)
   6. [E][X] project meeting (from: Mon 2pm to: 4pm)
   -----------------------------------------------------------------
   -----------------------------------------------------------------

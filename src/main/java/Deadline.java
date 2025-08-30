@@ -21,7 +21,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.type + "]" +
+        return "[D]" +
                 "[" + (isDone ? "X" : " ") + "] " +
                 this.description + " (by: " + this.deadline.format(OUTPUT_FORMATTER) + ")";
     }
