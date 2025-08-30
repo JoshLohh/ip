@@ -190,7 +190,7 @@ public class Olaf {
     }
 
     public static void main(String[] args) {
-        new Olaf("./data/Olaf.txt");
+        new Olaf("./data/Olaf.txt").run();
     }
 }
 
