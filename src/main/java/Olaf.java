@@ -1,5 +1,11 @@
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
+
 
 public class Olaf {
     public static void main(String[] args) {
@@ -7,6 +13,7 @@ public class Olaf {
         Storage storage = new Storage("./data/olaf.txt");
         ArrayList<Task> loadedTasks = storage.load();
         TaskList taskList = new TaskList(loadedTasks, storage);
+
 
         System.out.println("  -----------------------------------------------------------------");
         System.out.println("  Heyyos! I'm Olaf! Your personal assistant:)");
@@ -73,11 +80,22 @@ public class Olaf {
                     if (parts.length <2) {
                         throw new OlafException("OOPS!!! The deadline task requires both a description and a deadline.");
                     }
-                    String deadline = parts[1].trim();
-                    if (deadline.isEmpty()) {
+                    String deadlineStr = parts[1].trim();
+                    if (deadlineStr.isEmpty()) {
                         throw new OlafException("OOPS!!! The deadline of a deadline task cannot be empty.");
                     }
-                    taskList.addTask(new Deadline(desc, deadline));
+                    //Try to parse the given date and time
+                    try {
+                        LocalDateTime ldt = LocalDateTime.parse(deadlineStr,
+                                DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+                        taskList.addTask(new Deadline(desc,ldt));
+                    } catch (DateTimeParseException e) {
+                        System.out.println("  -----------------------------------------------------------------");
+                        System.out.println(" OOPS!!! Please enter the date in this format: d/M/yyyy HHmm "
+                                + "(e.g. 2/12/2025 1800)");
+                        System.out.println("  -----------------------------------------------------------------");
+                    }
+
                 } else if (input.startsWith("event")) {
                     String details = input.length()>5 ?
                             input.substring(6) : "";
@@ -89,12 +107,23 @@ public class Olaf {
                                 "OOPS!!! An event needs both a start time(/from) and an end time(/to).");
                     }
                     String desc = details.substring(0, fromIndex ).trim();
-                    String from = details.substring(fromIndex + 6, toIndex);
-                    String to = details.substring(toIndex + 5);
-                    if (desc.isEmpty() || from.isEmpty() || to.isEmpty()) {
+                    String fromStr = details.substring(fromIndex + 6, toIndex);
+                    String toStr = details.substring(toIndex + 5);
+                    if (desc.isEmpty() || fromStr.isEmpty() || toStr.isEmpty()) {
                         throw new OlafException("OOPS!!! Event description, start or end time cannot be empty.");
                     }
-                    taskList.addTask(new Event(desc, from, to));
+                    //Try to parse given date and time
+                    try {
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+                        LocalDateTime from = LocalDateTime.parse(fromStr, dtf);
+                        LocalDateTime to = LocalDateTime.parse(toStr, dtf);
+                        taskList.addTask(new Event(desc, from, to));
+                    } catch (DateTimeParseException e) {
+                        System.out.println("  -----------------------------------------------------------------");
+                        System.out.println(" OOPS!!! Please enter both 'from' and 'to' in this format: d/M/yyyy HHmm");
+                        System.out.println(" (eg. /from 2/12/2025 1800 /to 2/12/2025 2000)");
+                        System.out.println("  -----------------------------------------------------------------");
+                    }
                 } else if (input.startsWith("delete")) {
                     if (taskList.getCount() == 0) {
                         throw new OlafException("OOPS!!! There are no tasks to delete.");

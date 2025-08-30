@@ -1,9 +1,24 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    private String from;
-    private String to;
+    //private String from;
+    //private String to;
+    private LocalDateTime from;
+    private LocalDateTime to;
+    private static final DateTimeFormatter INPUT_FORMATTER =
+            DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMATTER =
+            DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
 
     public Event(String desc, String from, String to) {
+        super(desc, TaskType.EVENT);
+        this.from = LocalDateTime.parse(from, INPUT_FORMATTER);
+        this.to = LocalDateTime.parse(to,INPUT_FORMATTER);
+    }
+
+    public Event(String desc, LocalDateTime from, LocalDateTime to) {
         super(desc, TaskType.EVENT);
         this.from = from;
         this.to = to;
@@ -11,7 +26,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.type + "]" +
+        return "[E]" +
                 "[" + (isDone ? "X" : " ") + "] " +
                 this.description +
                 " (from: " + this.from +
@@ -19,10 +34,10 @@ public class Event extends Task {
     }
 
     public String getFrom() {
-        return this.from;
+        return this.from.format(INPUT_FORMATTER);
     }
 
     public String getTo() {
-        return this.to;
+        return this.to.format(INPUT_FORMATTER);
     }
 }
