@@ -69,4 +69,28 @@ public class TaskList {
         System.out.println("  You currently have a total of " + this.count + " tasks in your list.");
         System.out.println("  -----------------------------------------------------------------");
     }
+
+    /**
+     * Finds and prints all tasks whose description contains the given keyword.
+     *
+     * @param keyword The keyword to search for in the tasks
+     */
+    public void findTask(String keyword) {
+        System.out.println("  -----------------------------------------------------------------");
+        System.out.println("  Here are the matching tasks in your list:");
+        int count = 0;
+        //Loop through the task list, checking for match in description
+        for (int i = 0; i < this.count; i++) {
+            Task task = this.tasks.get(i);
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println("  " + (count + 1) + ". " + task);
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("  No matching tasks found.");
+        }
+        System.out.println("  -----------------------------------------------------------------");
+
+    }
 }
