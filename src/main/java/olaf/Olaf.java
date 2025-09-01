@@ -3,11 +3,21 @@ package olaf;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Main controller class for the Olaf application.
+ * Manages main program loop, user input and task management.
+ */
 public class Olaf {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs the Olaf application with the specified file path for storage.
+     * Load the existing tasks from storage, initialising a new task list if loading fails.
+     *
+     * @param filePath Path to the storage file for tasks.
+     */
     public Olaf(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -19,6 +29,9 @@ public class Olaf {
         }
     }
 
+    /**
+     * Runs the main program loop, reading user commands and executing them until exit command issued.
+     */
     public void run() {
         ui.showWelcome();
         Scanner sc = new Scanner(System.in);
@@ -35,6 +48,11 @@ public class Olaf {
         }
     }
 
+    /**
+     * The entry point of the Olaf application.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         new Olaf("./data/Olaf.txt").run();
     }

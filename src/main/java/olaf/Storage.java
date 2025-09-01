@@ -7,15 +7,29 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Handles loading and saving of tasks to and from a file.
+ * Responsible for keeping task data between program runs.
+ */
 public class Storage {
 
     private final String FILEPATH;
 
+    /**
+     * Constructs a Storage instance with the specified file path.
+     *
+     * @param filepath Path to the file used for saving and loading tasks
+     */
     public Storage(String filepath) {
         this.FILEPATH = filepath;
     }
 
+    /**
+     * Loads the list of tasks from the file.
+     * If the file does not exist, an empty list is returned.
+     *
+     * @return The ArrayList of tasks fetched from the file.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(FILEPATH);
@@ -51,6 +65,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the list of tasks into the file.
+     * Create directories and files if they do not exist.
+     *
+     * @param tasks The ArrayList of tasks to be saved into the file
+     */
     public void save(ArrayList<Task> tasks) {
         File file = new File(FILEPATH);
         file.getParentFile().mkdirs();

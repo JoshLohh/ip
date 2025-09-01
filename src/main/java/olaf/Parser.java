@@ -4,8 +4,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parses user input commands and modifies the task list, or call the UI to show the messages accordingly.
+ * Supports commands to add different types of lists, list tasks, mark/unmark tasks as done, delete tasks,
+ * and exit the program.
+ */
 public class Parser {
 
+    /**
+     * Parses the given user input,and react accordingly to the user commands on the provides task list and UI.
+     *
+     * @param input The command entered by the user, trimmed of trailing spaces.
+     * @param taskList The TaskList object holding the current tasks in the list.
+     * @param ui The UI object for displaying the messages.
+     * @return True if command signals program to end, false otherwise.
+     * @throws OlafException if input command is invalid or in the wrong format.
+     */
     public static boolean parse (String input, TaskList taskList, Ui ui) throws OlafException {
         input = input.trim();
         if (input.equals("list")) {
