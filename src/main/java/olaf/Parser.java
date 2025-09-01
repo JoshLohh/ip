@@ -142,6 +142,16 @@ public class Parser {
             }
             taskList.deleteTask(taskNum);
             return false;
+        } else if (input.startsWith("find")) {
+            if (taskList.getCount() == 0) {
+                throw new OlafException("OOPS!!! There are no tasks to find.");
+            }
+            String keyword = input.length() > 4 ? input.substring(5).trim() : "";
+            if (keyword.isEmpty()) {
+                throw new OlafException("OOPS!!! The description of a find cannot be empty.");
+            }
+            taskList.findTask(keyword);
+            return false;
         } else {
             throw new OlafException("OOPS!!! I'm sorry, but I don't know that command :(.");
         }
