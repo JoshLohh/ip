@@ -5,6 +5,7 @@ package olaf;
  * Base class for all specific task types
  */
 public class Task {
+
     protected boolean isDone;
     protected String description;
     protected TaskType type;
