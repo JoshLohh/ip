@@ -1,4 +1,6 @@
-package olaf;
+package olaf.tasks;
+
+import olaf.TaskType;
 
 /**
  * Represents a generic task with description, completion status and a type(TODO, DEADLINE, EVENT)

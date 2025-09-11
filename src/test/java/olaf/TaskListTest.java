@@ -4,8 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.sql.Array;
 import java.util.ArrayList;
+
+import olaf.tasks.Task;
+import olaf.tasks.TaskList;
+import olaf.tasks.ToDo;
+
 public class TaskListTest {
 
     @Test

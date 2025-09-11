@@ -7,6 +7,11 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import olaf.tasks.Deadline;
+import olaf.tasks.Event;
+import olaf.tasks.Task;
+import olaf.tasks.ToDo;
+
 /**
  * Handles loading and saving of tasks to and from a file.
  * Responsible for keeping task data between program runs.

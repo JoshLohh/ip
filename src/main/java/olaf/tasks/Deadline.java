@@ -1,7 +1,9 @@
-package olaf;
+package olaf.tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import olaf.TaskType;
 
 /**
  * Represents a Deadline task which has a description and a due date/time.

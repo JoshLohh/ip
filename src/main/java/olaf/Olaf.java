@@ -1,23 +1,17 @@
 package olaf;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import olaf.tasks.TaskList;
 
 /**
- * Main controller class for the Olaf application.
- * Manages main program loop, user input and task management.
+ * Main controller class for Olaf application modified to provide getResponse for GUI.
  */
 public class Olaf {
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
-    /**
-     * Constructs the Olaf application with the specified file path for storage.
-     * Load the existing tasks from storage, initialising a new task list if loading fails.
-     *
-     * @param filePath Path to the storage file for tasks.
-     */
     public Olaf(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -30,16 +24,28 @@ public class Olaf {
     }
 
     /**
-     * Runs the main program loop, reading user commands and executing them until exit command issued.
+     * Processes a user input command and returns the bot's response as a string.
      */
-    public void run() {
+    public String getResponse(String input) {
+        try {
+            return Parser.parse(input, tasks);
+        } catch (OlafException e) {
+            return "-----------------------------------------------------------------\n" + e.getMessage() + "\n-----------------------------------------------------------------";
+        }
+    }
+
+    /**
+     * Run method for CLI usage.
+     */
+    /*public void run() {
         ui.showWelcome();
-        Scanner sc = new Scanner(System.in);
+        java.util.Scanner sc = new java.util.Scanner(System.in);
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
             try {
-                boolean isExit = Parser.parse(input, tasks, ui);
-                if (isExit) {
+                String output = Parser.parse(input, tasks);
+                System.out.println(output);
+                if (input.equals("bye")) {
                     break;
                 }
             } catch (OlafException e) {
@@ -48,13 +54,7 @@ public class Olaf {
         }
     }
 
-    /**
-     * The entry point of the Olaf application.
-     *
-     * @param args Command line arguments
-     */
     public static void main(String[] args) {
         new Olaf("./data/Olaf.txt").run();
-    }
+    }*/
 }
-

@@ -1,4 +1,6 @@
-package olaf;
+package olaf.tasks;
+
+import olaf.TaskType;
 
 /**
  * Represents a ToDo task which has a description and can be marked done or undone.
