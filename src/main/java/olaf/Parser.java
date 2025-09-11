@@ -4,35 +4,41 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import olaf.tasks.Deadline;
+import olaf.tasks.Event;
+import olaf.tasks.TaskList;
+import olaf.tasks.ToDo;
+
 /**
- * Parses user input commands and modifies the task list, or call the UI to show the messages accordingly.
- * Supports commands to add different types of lists, list tasks, mark/unmark tasks as done, delete tasks,
- * and exit the program.
+ * Parses user input commands and modifies the task list.
+ * Returns strings describing results instead of printing.
  */
 public class Parser {
 
     /**
-     * Parses the given user input,and react accordingly to the user commands on the provides task list and UI.
+     * Parses the given user input, executes commands on the provided task list,
+     * and returns a String describing the result.
      *
-     * @param input The command entered by the user, trimmed of trailing spaces.
-     * @param taskList The TaskList object holding the current tasks in the list.
-     * @param ui The UI object for displaying the messages.
-     * @return True if command signals program to end, false otherwise.
+     * @param input The command entered by the user.
+     * @param taskList The TaskList object.
+     * @return String result of executing the command.
      * @throws OlafException if input command is invalid or in the wrong format.
      */
-    public static boolean parse (String input, TaskList taskList, Ui ui) throws OlafException {
+    public static String parse(String input, TaskList taskList) throws OlafException {
         input = input.trim();
+        StringBuilder output = new StringBuilder();
+
         if (input.equals("list")) {
-            taskList.listTasks();
-            return false;
-        } else if (input.equals("bye")) {
-            ui.showBye();
-            //signal to end the program
-            return true;
-        } else if (input.startsWith("mark")) {
+            output.append(taskList.listTasks());
+        }
+        else if (input.equals("bye")) {
+            output.append("Goodbye! Hope to see you again soon!");
+        }
+        else if (input.startsWith("mark")) {
             if (taskList.getCount() == 0) {
                 throw new OlafException("OOPS!!! There are no tasks to mark");
             }
+
             String taskStrPos = input.substring(4).trim();
             int taskNum;
             try {
@@ -44,12 +50,13 @@ public class Parser {
                 throw new OlafException("OOPS!!! Task number for 'mark' must be between 1 and " +
                         taskList.getCount() + ".");
             }
-            taskList.markTask(taskNum);
-            return false;
-        } else if (input.startsWith("unmark")) {
+            output.append(taskList.markTask(taskNum));
+        }
+        else if (input.startsWith("unmark")) {
             if (taskList.getCount() == 0) {
                 throw new OlafException("OOPS!!! There are no tasks to unmark");
             }
+
             String taskStrPos = input.substring(6).trim();
             int taskNum;
             try {
@@ -61,20 +68,17 @@ public class Parser {
                 throw new OlafException("OOPS!!! Task number for 'unmark' must be between 1 and " +
                         taskList.getCount() + ".");
             }
-            taskList.unmarkTask(taskNum);
-            return false;
-        } else if (input.startsWith("todo")) {
-            String desc = input.length() > 4 ?
-                    input.substring(5).trim() : "";
+            output.append(taskList.unmarkTask(taskNum));
+        }
+        else if (input.startsWith("todo")) {
+            String desc = input.length() > 4 ? input.substring(5).trim() : "";
             if (desc.isEmpty()) {
                 throw new OlafException("OOPS!!! The description of a todo task cannot be empty.");
             }
-            taskList.addTask(new ToDo(desc));
-            return false;
-        } else if (input.startsWith("deadline")) {
-            String details = input.length() > 8 ?
-                    input.substring(9) : "";
-            //Split details into array of 2, desc and deadline
+            output.append(taskList.addTask(new ToDo(desc)));
+        }
+        else if (input.startsWith("deadline")) {
+            String details = input.length() > 8 ? input.substring(9) : "";
             String[] parts = details.split(" /by ");
             String desc = parts[0].trim();
             if (desc.isEmpty()) {
@@ -87,25 +91,19 @@ public class Parser {
             if (deadlineStr.isEmpty()) {
                 throw new OlafException("OOPS!!! The deadline of a deadline task cannot be empty.");
             }
-            //Try to parse the given date and time
             try {
-                LocalDateTime ldt = LocalDateTime.parse(deadlineStr,
-                        DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
-                taskList.addTask(new Deadline(desc, ldt));
+                LocalDateTime ldt = LocalDateTime.parse(deadlineStr, DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+                output.append(taskList.addTask(new Deadline(desc, ldt)));
             } catch (DateTimeParseException e) {
-                throw new OlafException("OOPS!!! Please enter the date in this format:" +
-                        " d/M/yyyy HHmm (e.g. 2/12/2025 1800).");
+                throw new OlafException("OOPS!!! Please enter the date in this format: d/M/yyyy HHmm (e.g. 2/12/2025 1800).");
             }
-            return false;
-        } else if (input.startsWith("event")) {
-            String details = input.length() > 5 ?
-                    input.substring(6) : "";
-            //split details into corresponding parts using index
-            int fromIndex = details.indexOf("/from "); //starting index returned
+        }
+        else if (input.startsWith("event")) {
+            String details = input.length() > 5 ? input.substring(6) : "";
+            int fromIndex = details.indexOf("/from ");
             int toIndex = details.indexOf(" /to ");
             if (fromIndex == -1 || toIndex == -1) {
-                throw new OlafException(
-                        "OOPS!!! An event needs both a start time(/from) and an end time(/to).");
+                throw new OlafException("OOPS!!! An event needs both a start time(/from) and an end time(/to).");
             }
             String desc = details.substring(0, fromIndex).trim();
             String fromStr = details.substring(fromIndex + 6, toIndex);
@@ -113,23 +111,20 @@ public class Parser {
             if (desc.isEmpty() || fromStr.isEmpty() || toStr.isEmpty()) {
                 throw new OlafException("OOPS!!! Event description, start or end time cannot be empty.");
             }
-            //Try to parse given date and time
             try {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
                 LocalDateTime from = LocalDateTime.parse(fromStr, dtf);
                 LocalDateTime to = LocalDateTime.parse(toStr, dtf);
-                taskList.addTask(new Event(desc, from, to));
+                output.append(taskList.addTask(new Event(desc, from, to)));
             } catch (DateTimeParseException e) {
-                throw new OlafException("OOPS!!! Please enter both 'from' and 'to' in this format: d/M/yyyy HHmm\n" +
-                        "  (eg. /from 2/12/2025 1800 /to 2/12/2025 2000)");
+                throw new OlafException("OOPS!!! Please enter both 'from' and 'to' in this format: d/M/yyyy HHmm (eg. /from 2/12/2025 1800 /to 2/12/2025 2000).");
             }
-            return false;
-        } else if (input.startsWith("delete")) {
+        }
+        else if (input.startsWith("delete")) {
             if (taskList.getCount() == 0) {
                 throw new OlafException("OOPS!!! There are no tasks to delete.");
             }
-            String taskStrPos = input.length() > 6 ?
-                    input.substring(6).trim() : "";
+            String taskStrPos = input.length() > 6 ? input.substring(6).trim() : "";
             int taskNum;
             try {
                 taskNum = Integer.parseInt(taskStrPos);
@@ -140,9 +135,9 @@ public class Parser {
                 throw new OlafException("OOPS!!! Task number for delete must be between 1 and " +
                         taskList.getCount() + ".");
             }
-            taskList.deleteTask(taskNum);
-            return false;
-        } else if (input.startsWith("find")) {
+            output.append(taskList.deleteTask(taskNum));
+        }
+        else if (input.startsWith("find")) {
             if (taskList.getCount() == 0) {
                 throw new OlafException("OOPS!!! There are no tasks to find.");
             }
@@ -150,10 +145,12 @@ public class Parser {
             if (keyword.isEmpty()) {
                 throw new OlafException("OOPS!!! The description of a find cannot be empty.");
             }
-            taskList.findTask(keyword);
-            return false;
-        } else {
+            output.append(taskList.findTask(keyword));
+        }
+        else {
             throw new OlafException("OOPS!!! I'm sorry, but I don't know that command :(.");
         }
+
+        return output.toString();
     }
 }

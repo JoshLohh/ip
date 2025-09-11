@@ -9,6 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import java.io.File;
 import java.util.ArrayList;
 
+import olaf.tasks.Deadline;
+import olaf.tasks.Event;
+import olaf.tasks.Task;
+import olaf.tasks.ToDo;
+
 public class StorageTest {
 
     @Test

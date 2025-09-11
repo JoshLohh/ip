@@ -1,7 +1,9 @@
-package olaf;
+package olaf.tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import olaf.TaskType;
 
 /**
  * Represents an Event task that has a description, a start time and an end time.
