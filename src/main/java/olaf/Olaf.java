@@ -33,28 +33,4 @@ public class Olaf {
             return e.getMessage();
         }
     }
-
-    /**
-     * Run method for CLI usage.
-     */
-    /*public void run() {
-        ui.showWelcome();
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        while (sc.hasNextLine()) {
-            String input = sc.nextLine();
-            try {
-                String output = Parser.parse(input, tasks);
-                System.out.println(output);
-                if (input.equals("bye")) {
-                    break;
-                }
-            } catch (OlafException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        new Olaf("./data/Olaf.txt").run();
-    }*/
 }
