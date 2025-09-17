@@ -30,6 +30,9 @@ public class Event extends Task {
         super(desc, TaskType.EVENT);
         this.from = LocalDateTime.parse(from, INPUT_FORMATTER);
         this.to = LocalDateTime.parse(to,INPUT_FORMATTER);
+        assert this.description != null : "Description should not be null";
+        assert this.type != null : "Task type should not be null";
+        assert this.from != null && this.to != null : "Event times cannot be null";
     }
 
     /**
@@ -43,6 +46,9 @@ public class Event extends Task {
         super(desc, TaskType.EVENT);
         this.from = from;
         this.to = to;
+        assert this.description != null : "Description should not be null";
+        assert this.type != null : "Task type should not be null";
+        assert this.from != null && this.to != null : "Event times cannot be null";
     }
 
     @Override

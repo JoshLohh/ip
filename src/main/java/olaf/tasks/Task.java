@@ -22,6 +22,9 @@ public class Task {
         this.description = desc;
         this.isDone = false;
         this.type = type;
+        assert this.description != null : "Description should not be null";
+        assert this.type != null : "Task type should not be null";
+
     }
 
     /**
