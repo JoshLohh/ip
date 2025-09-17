@@ -30,7 +30,7 @@ public class Olaf {
         try {
             return Parser.parse(input, tasks);
         } catch (OlafException e) {
-            return "-----------------------------------------------------------------\n" + e.getMessage() + "\n-----------------------------------------------------------------";
+            return e.getMessage();
         }
     }
 
