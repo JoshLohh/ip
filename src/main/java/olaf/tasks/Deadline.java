@@ -27,6 +27,10 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline) {
         super(description, TaskType.DEADLINE);
         this.deadline = LocalDateTime.parse(deadline, INPUT_FORMATTER);
+        assert this.description != null : "Description should not be null";
+        assert this.type != null : "Task type should not be null";
+        assert this.deadline != null : "Deadline cannot be null";
+
     }
 
     /**
@@ -38,6 +42,9 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDateTime deadline) {
         super(description, TaskType.DEADLINE);
         this.deadline = deadline;
+        assert this.description != null : "Description should not be null";
+        assert this.type != null : "Task type should not be null";
+        assert this.deadline != null : "Deadline cannot be null";
     }
 
     @Override
