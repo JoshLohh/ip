@@ -2,6 +2,7 @@ package olaf.tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import olaf.TaskType;
 
@@ -56,5 +57,19 @@ public class Deadline extends Task {
 
     public String getDeadline() {
         return this.deadline.format(INPUT_FORMATTER);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        Deadline other = (Deadline) obj;
+        return deadline.equals(other.deadline);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), deadline);
     }
 }

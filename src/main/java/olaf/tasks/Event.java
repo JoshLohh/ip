@@ -2,6 +2,7 @@ package olaf.tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import olaf.TaskType;
 
@@ -67,4 +68,22 @@ public class Event extends Task {
     public String getTo() {
         return this.to.format(INPUT_FORMATTER);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if (!(obj instanceof Event)) {
+            return false;
+        }
+        Event other = (Event) obj;
+        return from.equals(other.from) && to.equals(other.to);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), from, to);
+    }
+
 }

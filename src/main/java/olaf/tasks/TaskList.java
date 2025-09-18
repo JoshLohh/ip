@@ -1,6 +1,8 @@
 package olaf.tasks;
 
 import java.util.ArrayList;
+
+import olaf.OlafException;
 import olaf.Storage;
 
 /**
@@ -18,7 +20,12 @@ public class TaskList {
         this.count = tasks.size();
     }
 
-    public String addTask(Task task) {
+    public String addTask(Task task) throws OlafException{
+        for (Task existing : tasks) {
+            if (existing.equals(task)) {
+                throw new OlafException("This task already exists in your list!");
+            }
+        }
         tasks.add(task);
         count++;
         storage.save(tasks);

@@ -13,7 +13,7 @@ import olaf.tasks.ToDo;
 public class TaskListTest {
 
     @Test
-    public void addTask_singleToDo_incrementsCount() {
+    public void addTask_singleToDo_incrementsCount() throws OlafException {
         Storage dummySt = new Storage("testData/dummy.txt");
         TaskList taskList = new TaskList(new ArrayList<>(), dummySt);
         int initialCount = taskList.getCount();
